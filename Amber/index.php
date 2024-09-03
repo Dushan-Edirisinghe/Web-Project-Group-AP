@@ -26,15 +26,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <body>
   <section id="header">
     <div class="lavender">
-      <a href="index.html"><img src="src/assets/images/logo1.png" alt="main-logo"></a>
-      <a href="index.html">Amber Premium.Inc</a>
+      <a href="/Amber/index.php"><img src="src/assets/images/logo1.png" alt="main-logo"></a>
+      <a href="/Amber/index.php">Amber Premium.Inc</a>
     </div>
 
     <div>
       <ul id="navbar">
         <li><a href="/Amber/index.php" class="active">Home</a></li>
         <li><a href="/Amber/src/pages/shop.php">Shop</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="/Amber/about.php">About Us</a></li>
         <li><a href="searchbar.html"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
         <li><a href="/Amber/src/pages/login.php"><i class="fa-regular fa-user"></i></a></li>
         <li><a href="/Amber/src/pages/cart.php"><i class="fa fa-cart-shopping"></i></a></li>
@@ -324,10 +324,10 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
           <li><a href="boutiquewoman1.html">LADIES</a></li>
           <li><a href="boutiqueman1.html">GENTS</a></li>
           <li><a href="boutiquekid1.html">KIDS</a></li>
-          <li><a href="blog.html">REVIEW</a></li>
-          <li><a href="searchbar.html">SEARCH</a></li>
-          <li><a href="contact.html">CONTACT US</a></li>
-          <li><a href="login.html">LOGIN</a></li>
+          <li><a href="/Amber/src/pages/login.php">LOGIN</a></li>
+	  <li><a href="#">.</a></li>
+	  <li><a href="#">.</a></li>
+	  <li><a href="#">.</a></li>
 
         </ul>
       </div>

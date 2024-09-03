@@ -15,6 +15,19 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 
 ?>
+<?php
+
+// Remove product from the cart
+if (isset($_POST['remove'])) {
+    $product_id = $_POST['product_id'];
+    unset($_SESSION['cart'][$product_id]);
+}
+
+// Clear the cart
+if (isset($_POST['clear'])) {
+    unset($_SESSION['cart']);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,18 +46,18 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <body>
     <section id="header">
         <div class="lavender">
-            <a href="index.html"><img src="../assets/images/logo1.png" alt="main-logo"></a>
-            <a href="index.html">Amber Premium.Inc</a>
+            <a href="/Amber/index.php"><img src="../assets/images/logo1.png" alt="main-logo"></a>
+            <a href="/Amber/index.php">Amber Premium.Inc</a>
         </div>
         <!-------------navbar---------------->
         <div>
             <ul id="navbar">
-                <li><a href="/Amber/index.php" class="active">Home</a></li>
-                <li><a href="Boutique1.html">Shop</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="/Amber/index.php">Home</a></li>
+                <li><a href="/Amber/src/pages/shop.php">Shop</a></li>
+                <li><a href="/Amber/about.php">About Us</a></li>
                 <li><a href="searchbar.html"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
                 <li><a href="/Amber/src/pages/login.php"><i class="fa-regular fa-user"></i></a></li>
-                <li><a href="/Amber/src/pages/cart.php"><i class="fa fa-cart-shopping"></i></a></li>
+                <li><a href="/Amber/src/pages/cart.php" class="active"><i class="fa fa-cart-shopping"></i></a></li>
             </ul>
         </div>
     </section>
@@ -54,30 +67,52 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     
 
     <!-- Cart Items Section -->
-    <section id="cart">
-        <div class="container">
-            <h1><?php echo$userid."'s" ?> Cart</h1>
-            <table id="cartTable">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody id="cartItems">
-                    <!-- Cart items will be injected here by JavaScript -->
-                </tbody>
-            </table>
-            <div id="cartTotal">
-                <h3>Total: <span id="totalAmount">$0.00</span></h3>
-                <button class="cartbutton" id="checkoutBtn">Proceed to Checkout</button>
-            </div>
-        </div>
-    </section>
+	<h1>&nbsp;</h1>
+  <h1><?php echo$userid."'s" ?> Cart</h1>
 
+<?php if (!empty($_SESSION['cart'])): ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total = 0; ?>
+            <?php foreach ($_SESSION['cart'] as $product_id => $product): ?>
+                <tr>
+                    <td><?php echo $product['name']; ?></td>
+                    <td><?php echo '$' . $product['price']; ?></td>
+                    <td><?php echo $product['quantity']; ?></td>
+                    <td><?php echo '$' . $product['price'] * $product['quantity']; ?></td>
+                    <td>
+                        <form method="post" action="">
+                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                            <button type="submit" name="remove">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php $total += $product['price'] * $product['quantity']; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Total: <?php echo '$' . $total; ?></h2>
+
+    <form method="post" action="">
+        <button type="submit" name="clear">Clear Cart</button>
+    </form>
+<?php else: ?>
+    <p>Your cart is empty.</p>
+<?php endif; ?>
+
+<div class="backTo"><button><a href="/Amber/src/pages/shop.php">Continue Shopping</a></button></div>
+
+<h1>&nbsp;</h1>
 
     <!-------------footer---------------->
     <footer id="footer">
@@ -94,10 +129,10 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <li><a href="boutiquewoman1.html">LADIES</a></li>
                     <li><a href="boutiqueman1.html">GENTS</a></li>
                     <li><a href="boutiquekid1.html">KIDS</a></li>
-                    <li><a href="blog.html">REVIEW</a></li>
-                    <li><a href="searchbar.html">SEARCH</a></li>
-                    <li><a href="contact.html">CONTACT US</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="/Amber/src/pages/login.php">LOGIN</a></li>
+		    <li><a href="#">.</a></li>
+		    <li><a href="#">.</a></li>
+		    <li><a href="#">.</a></li>
 
                 </ul>
             </div>

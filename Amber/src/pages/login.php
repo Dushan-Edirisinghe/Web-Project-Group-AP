@@ -22,17 +22,17 @@ session_start()
 <body>
     <section id="header">
         <div class="lavender">
-            <a href="index.html"><img src="../assets/images/logo1.png" alt="main-logo"></a>
-            <a href="index.html">Amber Premium.Inc</a>
+            <a href="/Amber/index.php"><img src="../assets/images/logo1.png" alt="main-logo"></a>
+            <a href="/Amber/index.php">Amber Premium.Inc</a>
         </div>
         <!-------------navbar---------------->
         <div>
             <ul id="navbar">
-                <li><a href="/Amber/index.php" class="active">Home</a></li>
+                <li><a href="/Amber/index.php">Home</a></li>
                 <li><a href="/Amber/src/pages/shop.php">Shop</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="searchbar.html"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
-                <li><a href="/Amber/src/pages/login.php"><i class="fa-regular fa-user"></i></a></li>
+                <li><a href="/Amber/about.php">About Us</a></li>
+                <li><a href="#"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
+                <li><a href="/Amber/src/pages/login.php" class="active"><i class="fa-regular fa-user"></i></a></li>
                 <li><a href="/Amber/src/pages/cart.php"><i class="fa fa-cart-shopping"></i></a></li>
             </ul>
         </div>
@@ -103,7 +103,7 @@ session_start()
             <div class="footerrow container">
                 <div class="footer-one">
                     <div class="F-lavender">
-                        <a href="index.html"><img src="src/assets/images/admin/logo.png" alt=""></a>
+                        <a href="index.html"><img src="/Amber/src/assets/images/admin/logo.png" alt=""></a>
                         <a href="index.html">Amber Premium.INC</a>
                     </div>
                 </div>
@@ -113,10 +113,10 @@ session_start()
                         <li><a href="boutiquewoman1.html">LADIES</a></li>
                         <li><a href="boutiqueman1.html">GENTS</a></li>
                         <li><a href="boutiquekid1.html">KIDS</a></li>
-                        <li><a href="blog.html">REVIEW</a></li>
-                        <li><a href="searchbar.html">SEARCH</a></li>
-                        <li><a href="contact.html">CONTACT US</a></li>
-                        <li><a href="login.html">LOGIN</a></li>
+                        <li><a href="/Amber/src/pages/login.php">LOGIN</a></li>
+                        <li><a href="#">.</a></li>
+		        <li><a href="#">.</a></li>
+		        <li><a href="#">.</a></li>
 
                     </ul>
                 </div>

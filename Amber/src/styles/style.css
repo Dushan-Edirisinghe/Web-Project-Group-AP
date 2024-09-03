@@ -881,3 +881,10 @@ th:last-child {
     height: 550px;
     padding-top: -100px;
 }
+.backTo{
+	background-color: none;
+	font-size:20px;
+	text-align: center;
+	margin-left:50px;
+
+}
