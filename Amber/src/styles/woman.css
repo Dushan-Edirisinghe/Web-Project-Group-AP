@@ -1,0 +1,129 @@
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+#produit .pro{
+    padding: 10px 12px;
+    border: 1px solid #c4b9bc;
+    width: 18.5%;
+    min-width: 250px;
+    border-radius:25px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 55px;
+    transition: 0.2s ease;
+    position: relative;
+}
+#produit .procontainer{
+    display:flex;   
+    justify-content:space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+#produit .pro:hover{
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.08);
+
+}
+#produit{
+    text-align: center;
+
+}
+
+#produit .pro img{
+    width: 100%;
+    border-radius:20px;
+}
+#produit .pro .des{
+    text-align: start;
+    padding: 10px 0;
+    line-height: 0.05px;
+
+    
+}
+#produit .pro .des span{
+    color: #606063;
+    font-size: 20px;
+}
+#produit .pro .des h5{
+    padding-top: 7px;
+    color: black;
+    font-size: 17px;
+}
+#produit .pro .des i{
+    font-size: 25px;
+    color: rgb(243, 181, 25);
+}
+#produit .pro .des h4{
+    padding-top: 7px;
+    font-size: 15px;
+    font-weight: 900;
+    color: green;
+}
+#produit .pro #cart{
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: white;
+    color:rgb(15, 124, 15);
+    border: 1px solid #cce7d0;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+}
