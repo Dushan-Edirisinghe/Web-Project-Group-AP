@@ -15,6 +15,35 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 
 ?>
+<?php
+require 'config.php';
+
+// Fetch products from the database
+$stmt = $pdo->query('SELECT * FROM products');
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Add product to the cart
+if (isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['quantity']++;
+    } else {
+        $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
+        $stmt->execute([$product_id]);
+        $product = $stmt->fetch();
+
+        $_SESSION['cart'][$product_id] = [
+            "name" => $product['name'],
+            "price" => $product['price'],
+            "quantity" => 1,
+        ];
+    }
+
+    header("Location: cart.php");
+    exit();
+}
+?>
 
 
 <!DOCTYPE html>
@@ -46,16 +75,16 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <body>
     <section id="header">
         <div class="lavender">
-            <a href="index.html"><img src="../assets/images/logo1.png" alt="main-logo"></a>
-            <a href="index.html">Amber Premium.Inc</a>
+            <a href="/Amber/index.php"><img src="../assets/images/logo1.png" alt="main-logo"></a>
+            <a href="/Amber/index.php">Amber Premium.Inc</a>
         </div>
 
         <div>
             <ul id="navbar">
-                <li><a href="/Amber/index.php" class="active">Home</a></li>
-                <li><a href="/Amber/src/pages/shop.php">Shop</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="searchbar.html"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
+                <li><a href="/Amber/index.php">Home</a></li>
+                <li><a href="/Amber/src/pages/shop.php"  class="active">Shop</a></li>
+                <li><a href="/Amber/about.php">About Us</a></li>
+                <li><a href="#"><i class="fa-regular fa-solid fa-magnifying-glass"></i></a></li>
                 <li><a href="/Amber/src/pages/login.php"><i class="fa-regular fa-user"></i></a></li>
                 <li><a href="/Amber/src/pages/cart.php"><i class="fa fa-cart-shopping"></i></a></li>
             </ul>
@@ -64,24 +93,30 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
     <section id="produit" class="section-p1">
         <p class="h3">Welcome to the Amber Store</p>
-        
+
+        <?php foreach ($products as $product): ?>
         <div class="procontainer">
             <div class="pro">
-                <img src="../assets/images/hat/hat1.jpg" alt="">
+              <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="width: 150px; height: 150px;">
                 <div class="des">
-                    <span>CALVIN KLEIN</span>
-                    <h5>Black Beanie</h5>
+                    <span><?php echo $product['name']; ?></span>
+                    <h5><?php echo $product['description']; ?></h5>
                     <div class="star1">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <h4>80DT</h4>
+                    <h4><?php echo '$' . $product['price']; ?></h4>
                 </div>
-                <button type="button" class="shopping-button fa-solid fa-cart-shopping" onclick="addToCart()"></button>
+                <form method="post" action="">
+            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+            <button type="submit" class="shopping-button fa-solid fa-cart-shopping" name="add_to_cart">Add to Cart</button>
+        </form>
             </div>
+		<?php endforeach; ?>
 
+<!--
             <div class="pro">
                 <img src="../assets/images/hat/hat2.jpg" alt="">
                 <div class="des">
@@ -209,7 +244,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                 </div>
                 <button type="button" class="shopping-button fa-solid fa-cart-shopping" onclick="addToCart()"></button>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-------------footer---------------->
@@ -227,10 +262,10 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <li><a href="boutiquewoman1.html">LADIES</a></li>
                     <li><a href="boutiqueman1.html">GENTS</a></li>
                     <li><a href="boutiquekid1.html">KIDS</a></li>
-                    <li><a href="blog.html">REVIEW</a></li>
-                    <li><a href="searchbar.html">SEARCH</a></li>
-                    <li><a href="contact.html">CONTACT US</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="/Amber/src/pages/login.php">LOGIN</a></li>
+		    <li><a href="#">.</a></li>
+		    <li><a href="#">.</a></li>
+		    <li><a href="#">.</a></li>
 
                 </ul>
             </div>
