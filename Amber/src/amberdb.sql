@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2024 at 07:16 AM
+-- Generation Time: Sep 04, 2024 at 11:42 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -215,6 +215,29 @@ CREATE TABLE `payment_has_order` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`) VALUES
+(1, 'Product 1', 19.99, 'Description for Product 1', '../assets/images/hat/hat1.jpg'),
+(2, 'Product 2', 10.99, 'Description for Product 2', '../assets/images/hat/hat2.jpg'),
+(3, 'Product 3', 12.99, 'Description for Product 2', '../assets/images/hoodie/hoodie1.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -332,6 +355,12 @@ ALTER TABLE `payment_has_order`
   ADD KEY `fk_payment_has_order_payment1_idx` (`payment_idpayment`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -376,6 +405,12 @@ ALTER TABLE `order`
 --
 ALTER TABLE `payment`
   MODIFY `idpayment` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
